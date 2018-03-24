@@ -3,3 +3,6 @@ This repository contains my scraper for collecting PUBG data from pubg.op.gg, an
 
 # Scraper Utils:
 Contains the utils needed to scrape data from pubg.op.gg, based on a player's name. With this you can get that player's internal id, their last 100 fpp squad matches' ids, and the names and ids of everyone they played with (that killed anyone or died, so not someone who got first without killing anyone) in any given match searched by internal match id.
+
+# Scraper:
+Contains a scraper to scrape from a seed name, and a scraper to scrape based on files saved by other scraper.
