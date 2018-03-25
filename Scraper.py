@@ -97,7 +97,11 @@ def collect_data_expand_from_file(counter=99):
     for name in name_set_copy:
         if name not in used_names:
             player_id = scrape_user_id(name)
+            if not player_id:
+                break
             match_ids = scrape_match_list(player_id)
+            if not match_ids:
+                break
             new_match_ids = match_ids - match_set
             match_set.update(match_ids)
             with open("PUBG_match_ids.tsv", 'a') as f:
@@ -110,6 +114,8 @@ def collect_data_expand_from_file(counter=99):
                     while True:
                         try:
                             names_from_match, data_from_match = scrape_match_data(match_id)
+                            if not names_from_match:
+                                break
                             new_names_from_match = names_from_match
                             name_set.update(names_from_match)
                             with open("PUBG_names.tsv", 'a') as f:
@@ -127,6 +133,8 @@ def collect_data_expand_from_file(counter=99):
                                 print('Ratelimited?')
                                 sleep(5)
                                 names_from_match, data_from_match = scrape_match_data(match_id)
+                                if not names_from_match:
+                                    break
                                 new_names_from_match = names_from_match
                                 name_set.update(names_from_match)
                                 with open("PUBG_names.tsv", 'a') as f:
