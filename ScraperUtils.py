@@ -39,7 +39,7 @@ def scrape_match_list(user_id):
             offset = data['matches']['items'][j]['offset']
             match_id = data['matches']['items'][j]['match_id']
             match_ids.add(match_id)
-        sleep(0.5)
+        sleep(0)
         n = n + 1
     return match_ids
 
@@ -56,5 +56,5 @@ def scrape_match_data(match_id):
             killer_name = data['deaths'][j]['killer']['user']['nickname']
             killer_id = data['deaths'][j]['killer']['participant_id']
             name_id_set.add((killer_name, killer_id))
-    sleep(0.5)
+    sleep(0)
     return name_id_set, data

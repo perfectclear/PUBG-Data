@@ -37,8 +37,8 @@ def collect_data_from_seed_player(seed_name):
                 break
             except HTTPError:
                 try:
-                    print('Ratelimited!')
-                    sleep(10)
+                    print('Ratelimited?')
+                    sleep(5)
                     name_ids_from_match, data_from_match = scrape_match_data(match_id)
                     new_name_ids_from_match = name_ids_from_match - name_id_set
                     with open("PUBG_name_ids.tsv", 'a') as f:
