@@ -93,9 +93,7 @@ def collect_data_expand_from_file(counter=99):
                 used_matches.discard('')
 
     usable_names = name_set.copy()
-    usable_names -=used_names
-    usable_matches = match_set.copy()
-    usable_matches -= used_matches
+    usable_names -= used_names
     for name in usable_names:
         player_id = scrape_user_id(name)
         if not player_id:
@@ -110,6 +108,10 @@ def collect_data_expand_from_file(counter=99):
         used_names.add(name)
         with open("PUBG_used_names.tsv", 'a') as f:
             f.write(re.sub('[\s+]', '', str(name)) + "\t" + "\n")
+
+        usable_matches = match_set.copy()
+        usable_matches -= used_matches
+
         for match_id in usable_matches:
             while True:
                 try:
