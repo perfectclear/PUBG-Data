@@ -34,7 +34,7 @@ def collect_data_from_seed_player(seed_name):
                 counter = counter+1
                 print(counter)
                 break
-            except HTTPError:
+            except (HTTPError, ConnectionResetError):
                 try:
                     print('Ratelimited?')
                     sleep(5)
@@ -51,7 +51,7 @@ def collect_data_from_seed_player(seed_name):
                     counter = counter+1
                     print(counter)
                     continue
-                except HTTPError:
+                except (HTTPError, ConnectionResetError):
                     print('Double HTTPError! SKIPPING!')
                     break
     return counter
