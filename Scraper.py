@@ -1,6 +1,6 @@
 from ScraperUtils import scrape_user_id, scrape_match_list, scrape_match_data
 import csv
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from time import sleep
 import re
 
@@ -34,7 +34,7 @@ def collect_data_from_seed_player(seed_name):
                 counter = counter+1
                 print(counter)
                 break
-            except (HTTPError, ConnectionResetError):
+            except (HTTPError, ConnectionResetError, URLError):
                 try:
                     print('Ratelimited?')
                     sleep(5)
@@ -51,7 +51,7 @@ def collect_data_from_seed_player(seed_name):
                     counter = counter+1
                     print(counter)
                     continue
-                except (HTTPError, ConnectionResetError):
+                except (HTTPError, ConnectionResetError, URLError):
                     print('Double HTTPError! SKIPPING!')
                     break
     return counter
@@ -95,10 +95,18 @@ def collect_data_expand_from_file(counter=99):
     usable_names = name_set.copy()
     usable_names -= used_names
     for name in usable_names:
-        player_id = scrape_user_id(name)
+        try:
+            player_id = scrape_user_id(name)
+        except (HTTPError, ConnectionResetError, URLError):
+            print("error in scraping user id, skipping")
+            break
         if not player_id:
             break
-        match_ids = scrape_match_list(player_id)
+        try:
+            match_ids = scrape_match_list(player_id)
+        except (HTTPError, ConnectionResetError, URLError):
+            print("error in scraping match list, skipping")
+            break
         if not match_ids:
             break
         new_match_ids = match_ids - match_set
@@ -130,7 +138,7 @@ def collect_data_expand_from_file(counter=99):
                     counter = counter+1
                     print(counter)
                     break
-                except HTTPError:
+                except (HTTPError, ConnectionResetError, URLError):
                     try:
                         print('Ratelimited?')
                         sleep(5)
@@ -149,7 +157,7 @@ def collect_data_expand_from_file(counter=99):
                         counter = counter+1
                         print(counter)
                         continue
-                    except HTTPError:
+                    except (HTTPError, ConnectionResetError, URLError):
                         print('Double HTTPError! SKIPPING!')
                         break
     return counter
