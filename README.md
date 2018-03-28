@@ -13,5 +13,6 @@ Runs the seed scraper with seedname "JPFog" and then the expansion scraper once.
 
 # Known current issues:
 
-~~If you run ScraperRunner as is, it stops after collecting the match data on the first 199 players (about 16.5k matches)~~ fixed
+~~If you run ScraperRunner as is, it stops after collecting the match data on the first 199 players (about 16.5k matches)~~ fixed 
+
 If you try expanding on a large file, csv cannot handle it. Batching is a solution that has not yet been implemented.
