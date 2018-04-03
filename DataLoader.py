@@ -29,8 +29,6 @@ def flatten_json(y):
     return out
 
 a = []
-#b = []
-#c = []
 for i, test in enumerate(load_match()):
     for j, thing in enumerate(test[0]):
         tempdata = eval(test[0][i*1000+j])
@@ -39,6 +37,3 @@ for i, test in enumerate(load_match()):
         print(i*1000+j)
 df = pd.DataFrame(a)
 df.to_csv('PUBG_MatchData_Flattened.tsv', sep='\t', index=False)
-#        a.append(json_normalize(tempdata))
-#        b.append(json_normalize(data=tempdata), record_path='deaths')
-#        c.append(json_normalize(data=tempdata), record_path=['deaths','killer'],['deaths','victim'])
