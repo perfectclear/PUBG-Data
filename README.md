@@ -11,7 +11,7 @@ Contains a scraper to scrape from a seed name, and a scraper to scrape based on 
 Runs the seed scraper with seedname "JPFog" and then the expansion scraper once.
 
 # DataLoader:
-Loads in the data you saved through scraping and reformats into a pandas dataframe. you will need to change the os.chdir() directory to the directory you saved your data in.
+Loads in the data you saved through scraping and reformats into a pandas dataframe. you will need to change the os.chdir() directory to the directory you saved your data in. DataLoader also currently saves a flattened version of MatchData for easier future use.
 
 
 # Known current issues:
