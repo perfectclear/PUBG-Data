@@ -21,3 +21,7 @@ Loads in the data you saved through scraping and reformats into a pandas datafra
 If you try expanding on a large file, csv cannot handle it. Batching is a solution that has not yet been implemented.
 
 After running for a while, slows down. Solution: put http error matches into a "bad match list" and exclude them from the matches to search, so you dont check the same matches over and over. needs more investigation
+
+# Analysis
+Message me if you want your analysis included here.
+Here is a kill/death heatmap analysis https://www.kaggle.com/michaelapers/pubg-kill-death-heatmaps made by me
